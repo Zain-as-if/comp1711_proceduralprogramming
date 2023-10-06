@@ -1,7 +1,0 @@
-MiniChallenge:
-1. grep 42, *.txt
-2. grep "Eminem" *.txt #Cap Sensitive
-3. grep 1992 *.txt
-4. grep "Pink Floyd" *.txt | cut -d "," -f 4
-5. grep 197 *.txt | cut -d "," -f 2-4 | sort
-6. grep 200 *.txt > naughties.txt
