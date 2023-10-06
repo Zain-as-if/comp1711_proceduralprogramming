@@ -1,0 +1,13 @@
+Task 1:
+mkdir work
+mkdir work/input_data
+mkdir work/results
+mkdir work/program 
+echo "Test" > input.txt
+mv input.txt control01.txt | mv control01.txt work/input_data/
+rm -rf work
+
+Task 2:
+1. cut -d "," -f 2 birds.txt | sort 
+2. grep "newt" amphibians.txt | cut -d "," -f 2 
+3.
