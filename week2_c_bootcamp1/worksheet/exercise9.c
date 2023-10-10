@@ -1,3 +1,4 @@
+//Distance Travelled By Light
 #include <stdio.h>
 int main() {
     int light = 25902068.3712; //metres per second
