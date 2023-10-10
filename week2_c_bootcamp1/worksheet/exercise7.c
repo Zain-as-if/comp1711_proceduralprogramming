@@ -5,7 +5,7 @@ int main() {
     printf("Enter Temperature In Fahrenheit:");
     scanf("%f", &fahr);
     float cel;
-    cel = (5 / 9);
+    cel = (((fahr - 32) * 5) /9);
     printf("%f is %f degrees celsius\n", fahr, cel);
     return 0;
 }
