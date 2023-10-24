@@ -18,3 +18,12 @@ Week 3:
    For, While
    Switch
    Functions
+
+Week 4:
+   Read, Write, Append To Files
+   Using Head Files
+
+Compiling Header Files:
+gcc -c [name_of_header_file] // Will Produce Object File Of Header File
+gcc -c [name_of_implementation_file] //Will Produce Object File Of Implementation File
+gcc [name_of_implementation_object] [name_of_header_object] -o [name_of_exe_file] //Generates Exe By Combining Object Files
