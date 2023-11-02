@@ -50,5 +50,15 @@ int main() {
         perror("Error");
         return 1;
     }
-    // Check read_from_file.c & typedef_struct.c
+
+    int count = 0;
+    char line[100];
+
+    while (fgets(line, sizeof(line), file) != NULL){
+        count++;
+    }
+
+    fclose(file);
+    printf("Number Of Records In File: %d\n", count);
+    return 0;
 }
