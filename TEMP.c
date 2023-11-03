@@ -6,7 +6,7 @@
 typedef struct {
 	char date[11];
 	char time[6];
-	char steps[11];
+	int steps;
 } FITNESS_DATA;
 
 // Define any additional variables here
@@ -50,21 +50,25 @@ int main() {
         return 1;
     }
     
-    int i =0; 
-    int count = 0; // Counter Variable For While And If Statement
-    char line[100]; // Array That Stores Line Of CSV File
+
+    int count = 0;
+    char line[100];
+    FITNESS_DATA records[3];
+
 
     while (fgets(line, sizeof(line), file) != NULL){
+        
         FITNESS_DATA record;
-        tokeniseRecord(line, ",", record.date, record.time, record.steps);
-        if (count<3){
-            printf("%s/%s/%s", record.date, record.time, record.steps);
+        if (sscanf(line, "%10[^,],%5[^,],%d", record.date, record.time, &record.steps)) {
+            // Processed line successfully
+            records[count] = record;
+            count++;
+            if (count <= 3){
+                printf("%s/%s/%d\n", record.date, record.time, record.steps);
+            }
         }
-        count++;
     }
-    
     fclose(file);
     printf("Number Of Records In File: %d\n", count);
-    
     return 0;
 }
