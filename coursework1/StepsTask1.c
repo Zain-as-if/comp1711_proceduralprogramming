@@ -53,12 +53,14 @@ int main() {
     int i =0; 
     int count = 0; // Counter Variable For While And If Statement
     char line[100]; // Array That Stores Line Of CSV File
+    int step=0;
 
     while (fgets(line, sizeof(line), file) != NULL){
         FITNESS_DATA record;
         tokeniseRecord(line, ",", record.date, record.time, record.steps);
+        step = atoi(record.steps);
         if (count<3){
-            printf("%s/%s/%s", record.date, record.time, record.steps);
+            printf("%s/%s/%d\n", record.date, record.time, step);
         }
         count++;
     }
