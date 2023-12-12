@@ -52,12 +52,15 @@ int main()
 {
     char choice;
     int count = 0; // Count for lines
-    int stepcounter = 0; // Counter for lines with >500 Steps consecutively
-    int maxstepcounter = 0;
     char line[100]; // Array That Stores Lines Of CSV File
+    
     int leaststeps = 100000;
+
     int moststeps = 0;
     float totalstep = 0;
+    
+    int start = -1;
+    int end = -1;
 
     while (choice != 'Q')
     {
@@ -88,11 +91,10 @@ int main()
                 }
                 // Reads all lines from csv file
                 while (fgets(line, sizeof(line), file) != NULL)
-                {
-                    count++; // Counts number of lines in CSV file 
+                { 
                     FITNESS_DATA record;
                     tokeniseRecord(line, ",", record.date, record.time, record.steps);
-                    
+                    count++; // Counts number of lines in CSV file
                     
                     int currentstep = atoi(record.steps);
 
@@ -111,33 +113,8 @@ int main()
                         leaststeps = currentstep;
                         strcpy(leasttime, record.time);
                         strcpy(leastdate, record.date);
-                    }
-                    
-                    // Case F, StepCounter
-                    if (stepcounter == 0 && currentstep > 500)
-                    {
-                        stepcounter++;
-                        strcpy(starttime, record.time);
-                        strcpy(startdate, record.date);
-                    }
-                    else if (stepcounter != 0 && currentstep <= 500)
-                    {
-                        maxstepcounter = stepcounter; // Records period longest length for comparison
-                        stepcounter = 0;
-                        strcpy(endtime, record.time);
-                        strcpy(enddate, record.date);
-                    }
-                    else if (stepcounter != 0 && currentstep > 500)
-                    {
-                        stepcounter++;
-                    }
-                    else
-                    {
-                        //printf("No continuous period above 500 steps found");
-                    }
-                    
+                    } 
                 }
-
                 fclose(file);
                 break;
             }
@@ -170,8 +147,7 @@ int main()
 
             case 'F':
             {
-                printf("Longest period start: %s/%s\n", startdate, starttime);
-                printf("Longest period end: %s/%s\n", enddate, endtime);
+                // Couldn't Figure Out
                 break;
             }
 
