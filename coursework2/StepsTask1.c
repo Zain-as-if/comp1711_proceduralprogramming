@@ -50,7 +50,7 @@ int main() {
         return 1;
     }
     
-    int i =0; 
+    int i = 0; 
     int count = 0; // Counter Variable For While And If Statement
     char line[100]; // Array That Stores Line Of CSV File
     int step=0;
