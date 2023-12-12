@@ -8,10 +8,12 @@
 
 // Define any additional variables here
 // Global variables for filename and FITNESS_DATA array
+
 char mostdate[11];
 char mosttime[6];
 char leastdate[11];
 char leasttime[6];
+
 char startdate[11];
 char starttime[6];
 char enddate[11];
@@ -117,7 +119,6 @@ int main()
                         stepcounter++;
                         strcpy(starttime, record.time);
                         strcpy(startdate, record.date);
-                        printf("Start %s/%s\n", startdate, starttime);
                     }
                     else if (stepcounter != 0 && currentstep <= 500)
                     {
@@ -125,7 +126,6 @@ int main()
                         stepcounter = 0;
                         strcpy(endtime, record.time);
                         strcpy(enddate, record.date);
-                        printf("Finish %s/%s\n", enddate, endtime);
                     }
                     else if (stepcounter != 0 && currentstep > 500)
                     {
@@ -133,7 +133,7 @@ int main()
                     }
                     else
                     {
-                        printf("No continuous period above 500 steps found");
+                        //printf("No continuous period above 500 steps found");
                     }
                     
                 }
