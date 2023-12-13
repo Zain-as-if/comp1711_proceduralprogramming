@@ -127,13 +127,13 @@ int main()
 
             case 'C':
             {
-                printf("Fewest Steps: %s/%s\n", leastdate, leasttime);
+                printf("Fewest steps: %s %s\n", leastdate, leasttime);
                 break;
             }
 
             case 'D':
             {
-                printf("Most Steps: %s/%s\n", mostdate, mosttime);
+                printf("Largest steps: %s %s\n", mostdate, mosttime);
                 break;
             }
 
