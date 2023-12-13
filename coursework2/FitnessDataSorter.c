@@ -26,7 +26,7 @@ void tokeniseRecord(char *record, char delimiter, char *date, char *time, int *s
 }
 
 int sort(const void *a, const void *b) {
-    return ((FitnessData*)b)->steps - ((FitnessData*)a)->steps;
+    return ((FitnessData *)b)->steps - ((FitnessData *)a)->steps;
 }
 
 int main()
@@ -43,6 +43,7 @@ int main()
         printf("Error, could not find file\n");
         return 1;
     }
+
     //Step 2
     FitnessData record[1000];
     int count = 0;
@@ -51,6 +52,15 @@ int main()
     {
         char date[11], time[6];
         int steps;
+        
+        // Checks if data is of valid format, outputs error message and stops program if invalid data given
+        if (sscanf(line, "%10[^,],%5[^,],%d", date, time, &steps) != 3)
+        {
+            printf("Error: Invalid data format\n");
+            return 1;
+            break;
+        }
+
         tokeniseRecord(line, ',', date, time, &steps);
         strcpy(record[count].date, date);
         strcpy(record[count].time, time);
@@ -60,8 +70,19 @@ int main()
     fclose(file);
 
     qsort(record, count, sizeof(FitnessData), sort);
-    for (int i = 0; i < count; i++)
+    
+    strcat(filename, ".tsv");
+    file = fopen(filename, "w");
+    if (file == NULL)
     {
-        printf("Line %d: %s/%s/%d\n", i+1, record[i].date, record[i].time, record[i].steps);
+        printf("Error: Could not create .tsv file\n");
+        return 1;
     }
+
+    for (int i=0; i < count; i++)
+    {
+        fprintf(file, "%s\t%s\t%d\n", record[i].date, record[i].time, record[i].steps);
+    }
+    fclose(file);
+    return 0;
 }
